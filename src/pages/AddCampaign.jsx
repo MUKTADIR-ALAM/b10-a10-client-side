@@ -12,15 +12,19 @@ export default function AddCampaign() {
     const campaign_title = form.campaign_title.value;
     const campaign_type = form.campaign_type.value;
     const description = form.description.value;
-    const donation_amount = form.donation_amount.value;
+    const minimum_donation = form.minimum_donation.value;
     const deadline = form.deadline.value;
+    const user_email = form.user_email.value;
+    const user_name = form.user_name.value;
     const data = {
       image,
       campaign_title,
       campaign_type,
       description,
-      donation_amount,
-      deadline
+      minimum_donation,
+      deadline,
+      user_email,
+      user_name
     };
     fetch('http://localhost:3000/addCampaign', {
       method: 'POST',
@@ -31,7 +35,7 @@ export default function AddCampaign() {
     })
     .then(res=>res.json())
     .then(data=>console.log(data));
-    e.target.reset();
+    // e.target.reset();
     const notify = () =>
       toast.success("Thank you ! We will reach your destination soon");
     notify();
@@ -96,12 +100,13 @@ export default function AddCampaign() {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Donation amount</span>
+              <span className="label-text">Minimum donation amount $</span>
             </label>
             <input
               type="number"
-              name="donation_amount"
-              placeholder="Minimum ammount 50$"
+              name="minimum_donation"
+              min="1"
+              placeholder="Minimum donationt ammount $"
               className="input input-bordered"
               required
             />

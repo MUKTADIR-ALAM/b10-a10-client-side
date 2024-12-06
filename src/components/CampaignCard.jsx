@@ -7,9 +7,10 @@ export default function CampaignCard({ campaign }) {
     campaign_title,
     campaign_type,
     description,
-    donation_amount,
+    minimum_donation,
     deadline,
   } = campaign;
+  const today = new Date().toISOString().split("T")[0];
   return (
     <div className="card card-compact bg-base-100 w-96 shadow-xl">
       <figure className="w-full h-[230px]">
@@ -21,6 +22,12 @@ export default function CampaignCard({ campaign }) {
         <div className="badge badge-secondary bg-black border-none">
           {campaign_type}
         </div>
+        <div className="font-bold">Minimum donation {minimum_donation} $</div>
+        {
+          today>deadline?<div className="w-fit bg-red-500 px-3 p rounded-xl">Passed</div>:<div className="w-fit bg-green-500 px-3 p rounded-xl">active</div>
+        }
+        
+        
         <div className="card-actions justify-end">
           <Link
             to={`/campaignDetails/${_id}`}

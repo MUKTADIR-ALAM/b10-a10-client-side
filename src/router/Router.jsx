@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import AddCampaign from "../pages/AddCampaign";
 import Campaigns from "../pages/Campaigns";
 import CampaignDetails from "../pages/CampaignDetails";
+import MyCampaigns from "../pages/MyCampaigns";
 
 export const Router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const Router = createBrowserRouter([
         path: "/campaigns",
         element: <Campaigns />,
         loader: () => fetch(`http://localhost:3000/campaigns`),
+      },
+      {
+        path: "/myCampaigns/:email",
+        element: <MyCampaigns />,
+        loader: ({params}) => fetch(`http://localhost:3000/myCampaigns/${params.email}`),
       },
       {
         path: "/campaignDetails/:id",

@@ -10,17 +10,15 @@ export default function CampaignDetails() {
     campaign_title,
     campaign_type,
     description,
-    donation_amount,
+    minimum_donation,
     deadline,
   } = campaign;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    e.target.quantity.value = '';
-    e.target.type.value = '';
-    e.target.notes.value = '';
-    e.target.location.value = '';
-    const notify = () => toast.success('Thank you ! We will reach your destination soon');
+    const donation_ammount = e.target.donation_ammount.value;
+    const notify = () =>
+      toast.success("Thank you ! We will reach your destination soon");
     notify();
   };
 
@@ -40,7 +38,9 @@ export default function CampaignDetails() {
           </div>
           {/* Product Info Section */}
           <div className="md:flex-1 px-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Title : {campaign_title}</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              Title : {campaign_title}
+            </h2>
             {/* <p className="text-gray-600 text-sm mb-4">
               {title}
             </p> */}
@@ -51,83 +51,49 @@ export default function CampaignDetails() {
               </div>
               <div>
                 <span className="font-bold text-gray-700">Status: </span>
-                <span className="text-gray-600">{donation_amount}</span>
+                <span className="text-gray-600">{minimum_donation}</span>
               </div>
             </div>
             {/* Size Selection */}
             <div className="mb-4">
               <span className="font-bold text-gray-700">Contact Info:</span>
-              <div className="flex items-center mt-2">
-                {deadline}
-              </div>
+              <div className="flex items-center mt-2">{deadline}</div>
             </div>
             {/* Product Description */}
             <div>
-              <span className="font-bold text-gray-700">Campaign Description:</span>
-              <p className="text-gray-600 text-sm mt-2">
-                {description}
-              </p>
+              <span className="font-bold text-gray-700">
+                Campaign Description:
+              </span>
+              <p className="text-gray-600 text-sm mt-2">{description}</p>
+            </div>
+            <div>
+              <form onSubmit={handleSubmit} className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">
+                      Minimum donation Ammount {minimum_donation} $
+                    </span>
+                  </label>
+                  <input
+                    type="number"
+                    min={minimum_donation}
+                    name="donation_ammount"
+                    placeholder="enter donation ammount"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control mt-6">
+                  <button className="btn btn-primary bg-primary border-none">
+                    Donate Now
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
         {/* form */}
-      <div className="card bg-base-100 w-full max-w-6xl shrink-0 shadow-2xl mx-auto">
-        <form onSubmit={handleSubmit} className="card-body">
-        <h2 className="text-center font-bold text-2xl">Donation Form Field</h2>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Quantity of items</span>
-            </label>
-            <input
-              type="text"
-              name="quantity"
-              placeholder="e.g. 2 jackets, 3 blankets"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Item type</span>
-            </label>
-            <input
-              type="text"
-              name="type"
-              placeholder="e.g., blanket, jacket, sweater"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Pickup location</span>
-            </label>
-            <input
-              type="text"
-              name="location"
-              placeholder="e.g. House 12, Road 5, Dhanmondi, Dhaka"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Additional notes (optional)</span>
-            </label>
-            <input
-              type="text"
-              name="notes"
-              placeholder="important instruction"
-              className="input input-bordered"
-            />
-          </div>
-          <div className="form-control mt-6">
-            <button className="btn btn-primary bg-primary border-none">
-              Donate Now
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="card bg-base-100 w-full max-w-6xl shrink-0 shadow-2xl mx-auto"></div>
       </div>
     </div>
   );

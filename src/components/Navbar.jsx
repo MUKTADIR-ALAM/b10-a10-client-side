@@ -4,7 +4,6 @@ import { AuthContext } from "../provider/AuthProvider";
 
 export default function Navbar() {
   const { user, signOutUser } = useContext(AuthContext);
-
   const link = (
     <>
       <li>
@@ -21,18 +20,17 @@ export default function Navbar() {
             <li>
               <NavLink to={"/addCampaign"}>Add New Campaign</NavLink>
             </li>
-            <li>
-              <a>My Campaign</a>
+            {
+              user && <li>
+              <NavLink to={`/myCampaigns/${user.email}`}>My Campaign</NavLink>
             </li>
-            <li>
-              <a>My Donations</a>
-            </li>
+            }
           </ul>
         </details>
       </li>
       {user && (
         <li>
-          <NavLink to={"/dashboard"}>Dashboard</NavLink>
+          <NavLink to={"/myDonations"}>My Donations</NavLink>
         </li>
       )}
     </>
