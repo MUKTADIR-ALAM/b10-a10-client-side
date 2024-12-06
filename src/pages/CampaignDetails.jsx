@@ -18,7 +18,7 @@ export default function CampaignDetails() {
     e.preventDefault();
     const donation_ammount = e.target.donation_ammount.value;
     const notify = () =>
-      toast.success("Thank you ! We will reach your destination soon");
+      toast.success("Thanks for your donation");
     notify();
   };
 

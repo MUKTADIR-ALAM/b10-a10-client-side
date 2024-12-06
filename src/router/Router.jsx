@@ -7,6 +7,7 @@ import AddCampaign from "../pages/AddCampaign";
 import Campaigns from "../pages/Campaigns";
 import CampaignDetails from "../pages/CampaignDetails";
 import MyCampaigns from "../pages/MyCampaigns";
+import MyDonation from "../pages/MyDonation";
 
 export const Router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const Router = createBrowserRouter([
       {
         path: "/campaigns",
         element: <Campaigns />,
+        loader: () => fetch(`http://localhost:3000/campaigns`),
+      },
+      {
+        path: "/myDonations",
+        element: <MyDonation />,
         loader: () => fetch(`http://localhost:3000/campaigns`),
       },
       {

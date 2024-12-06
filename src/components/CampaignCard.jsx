@@ -28,13 +28,14 @@ export default function CampaignCard({ campaign }) {
         }
         
         
-        <div className="card-actions justify-end">
+        <div className="card-actions ">
           <Link
             to={`/campaignDetails/${_id}`}
             className="btn btn-primary bg-primary hover:bg-black border-none"
           >
             See more
           </Link>
+          <button className="btn btn-primary bg-red-500 hover:bg-black border-none">Delete</button>
         </div>
       </div>
     </div>
