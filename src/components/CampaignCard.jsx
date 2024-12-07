@@ -24,11 +24,11 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
 
         fetch(`http://localhost:3000/campaigns/${id}`,{
           method:'DELETE'
@@ -65,6 +65,12 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
             className="btn btn-primary bg-primary hover:bg-black border-none"
           >
             See more
+          </Link>
+          <Link
+            to={`/updateCampaign/${_id}`}
+            className="btn btn-primary bg-primary hover:bg-black border-none"
+          >
+            Update
           </Link>
           <button
             onClick={()=>handleDelete(_id)}

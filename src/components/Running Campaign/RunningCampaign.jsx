@@ -11,7 +11,7 @@ export default function RunningCampaign() {
         const deadline = result[0].deadline;
         const today = new Date().toISOString().split("T")[0];
         const remaning = result.filter(res=>res.deadline>=today)
-        console.log(remaning);
+        // console.log(remaning);
         // console.log(`deadline ${deadline}`);
         // console.log(`today${today}`)
         // console.log(today>deadline);
