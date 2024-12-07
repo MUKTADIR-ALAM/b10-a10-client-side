@@ -130,7 +130,8 @@ export default function AddCampaign() {
               type="text"
               name="user_email"
               className="input input-bordered"
-              value={user?.email}
+              readOnly
+              defaultValue={user?.email}
             />
           </div>
           <div className="form-control">
@@ -141,7 +142,8 @@ export default function AddCampaign() {
               type="text"
               name="user_name"
               className="input input-bordered"
-              value={user?.displayName}
+              readOnly
+              defaultValue={user?.displayName}
             />
           </div>
           <div className="form-control mt-6">

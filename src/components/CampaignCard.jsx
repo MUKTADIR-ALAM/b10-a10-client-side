@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export default function CampaignCard({ campaign }) {
+export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
   const {
     _id,
     image,
@@ -11,6 +12,35 @@ export default function CampaignCard({ campaign }) {
     deadline,
   } = campaign;
   const today = new Date().toISOString().split("T")[0];
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+
+        fetch(`http://localhost:3000/campaigns/${id}`,{
+          method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(result=>console.log(result))
+        const remaining = campaigns.filter(camp=>camp._id!=id)
+        setCampaigns(remaining);
+      }
+    });
+  };
+
   return (
     <div className="card card-compact bg-base-100 w-96 shadow-xl">
       <figure className="w-full h-[230px]">
@@ -23,11 +53,12 @@ export default function CampaignCard({ campaign }) {
           {campaign_type}
         </div>
         <div className="font-bold">Minimum donation {minimum_donation} $</div>
-        {
-          today>deadline?<div className="w-fit bg-red-500 px-3 p rounded-xl">Passed</div>:<div className="w-fit bg-green-500 px-3 p rounded-xl">active</div>
-        }
-        
-        
+        {today > deadline ? (
+          <div className="w-fit bg-red-500 px-3 p rounded-xl">Passed</div>
+        ) : (
+          <div className="w-fit bg-green-500 px-3 p rounded-xl">active</div>
+        )}
+
         <div className="card-actions ">
           <Link
             to={`/campaignDetails/${_id}`}
@@ -35,7 +66,12 @@ export default function CampaignCard({ campaign }) {
           >
             See more
           </Link>
-          <button className="btn btn-primary bg-red-500 hover:bg-black border-none">Delete</button>
+          <button
+            onClick={()=>handleDelete(_id)}
+            className="btn btn-primary bg-red-500 hover:bg-black border-none"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

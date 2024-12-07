@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import CampaignCard from "../components/CampaignCard";
+import { useState } from "react";
 
 export default function Campaigns() {
-  const campaigns = useLoaderData();
+  const data = useLoaderData();
+  const [campaigns,setCampaigns] = useState(data);
   console.log(campaigns);
   return (
     <div className="flex flex-col justify-center items-center my-8">
@@ -12,7 +14,7 @@ export default function Campaigns() {
       {
       campaigns.length ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {campaigns.map((campaign) => (
-        <CampaignCard key={campaign._id} campaign={campaign} />
+        <CampaignCard key={campaign._id} campaign={campaign} campaigns={campaigns} setCampaigns={setCampaigns} />
       ))}
     </div> : <p>No campaigns runing</p>
       }
