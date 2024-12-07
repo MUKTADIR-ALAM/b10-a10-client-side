@@ -49,7 +49,7 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
       <div className="card-body">
         <h2 className="card-title">{campaign_title}</h2>
         <p className="overflow-hidden">{description.slice(0, 100)}...</p>
-        <div className="badge badge-secondary bg-black border-none">
+        <div className="badge badge-secondary bg-primary border-none">
           {campaign_type}
         </div>
         <div className="font-bold">Minimum donation {minimum_donation} $</div>
@@ -62,19 +62,19 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
         <div className="card-actions ">
           <Link
             to={`/campaignDetails/${_id}`}
-            className="btn btn-primary bg-primary hover:bg-black border-none"
+            className="btn btn-primary bg-primary hover:bg-indigo-500 border-none"
           >
             See more
           </Link>
           <Link
             to={`/updateCampaign/${_id}`}
-            className="btn btn-primary bg-primary hover:bg-black border-none"
+            className="btn btn-primary bg-primary hover:bg-indigo-500 border-none"
           >
             Update
           </Link>
           <button
             onClick={()=>handleDelete(_id)}
-            className="btn btn-primary bg-red-500 hover:bg-black border-none"
+            className="btn btn-primary bg-red-500 hover:bg-red-600 border-none"
           >
             Delete
           </button>

@@ -7,6 +7,7 @@ export default function MyCampaigns() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [campaigns,setCampaigns] = useState(data);
+
   return (
     <div className="flex flex-col justify-center items-center my-8">
       <div className="mb-3 text-2xl font-bold">

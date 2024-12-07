@@ -4,6 +4,21 @@ import { AuthContext } from "../provider/AuthProvider";
 
 export default function Navbar() {
   const { user, signOutUser } = useContext(AuthContext);
+
+  // 
+    const setDarkMode = () => {
+    document.querySelector("html").setAttribute("data-theme", "dark");
+    }
+    const setLightMode = () => {
+    document.querySelector("html").setAttribute("data-theme", "light");
+    }
+    const toggleTheme= (e) => {
+    if (e.target.checked) setDarkMode();
+    else setLightMode()
+    }
+
+  // 
+
   const link = (
     <>
       <li>
@@ -20,11 +35,11 @@ export default function Navbar() {
             <li>
               <NavLink to={"/addCampaign"}>Add New Campaign</NavLink>
             </li>
-            {
-              user && <li>
-              <NavLink to={`/myCampaigns/${user.email}`}>My Campaign</NavLink>
-            </li>
-            }
+            {user && (
+              <li>
+                <NavLink to={`/myCampaigns/${user.email}`}>My Campaign</NavLink>
+              </li>
+            )}
           </ul>
         </details>
       </li>
@@ -68,6 +83,7 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end">
+        <div className="flex justify-center items-center gap-2">Dark mode <input onClick={toggleTheme} type="checkbox" className="toggle" defaultChecked /></div>
         {user && user?.email ? (
           // <div className="px-4 font-bold flex gap-3 items-center">
           //   <div className="avatar">
