@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
   const {
@@ -12,8 +14,13 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
     deadline,
   } = campaign;
   const today = new Date().toISOString().split("T")[0];
-
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleDelete = (id) => {
+    if(!user){
+      navigate('/login');
+      return;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

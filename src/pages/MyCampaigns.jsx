@@ -3,7 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLoaderData } from "react-router-dom";
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
+import { FaDonate } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 export default function MyCampaigns() {
@@ -74,7 +74,7 @@ export default function MyCampaigns() {
                         to={`/campaignDetails/${campaign._id}`}
                         className="btn "
                       >
-                        <FaEye />
+                        <FaDonate />
                       </Link>
                       <Link
                         to={`/updateCampaign/${campaign._id}`}

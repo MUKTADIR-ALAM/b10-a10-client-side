@@ -9,6 +9,7 @@ import CampaignDetails from "../pages/CampaignDetails";
 import MyCampaigns from "../pages/MyCampaigns";
 import MyDonation from "../pages/MyDonation";
 import UpdateCampaign from "../pages/UpdateCampaign";
+import PrivateRoute from "./PrivateRoute";
 
 export const Router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/addCampaign",
-        element: <AddCampaign />,
+        element: <PrivateRoute><AddCampaign /></PrivateRoute>,
       },
       {
         path: "/campaigns",
@@ -38,22 +39,22 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/updateCampaign/:id",
-        element: <UpdateCampaign />,
+        element: <PrivateRoute><UpdateCampaign /></PrivateRoute>,
         loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
       },
       {
         path: "/myDonations",
-        element: <MyDonation />,
+        element: <PrivateRoute><MyDonation /></PrivateRoute>,
         loader: () => fetch(`http://localhost:3000/donate`),
       },
       {
         path: "/myCampaigns/:email",
-        element: <MyCampaigns />,
+        element: <PrivateRoute><MyCampaigns /></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:3000/myCampaigns/${params.email}`),
       },
       {
         path: "/campaignDetails/:id",
-        element: <CampaignDetails/>,
+        element: <PrivateRoute><CampaignDetails/></PrivateRoute>,
         loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
       },
     ],

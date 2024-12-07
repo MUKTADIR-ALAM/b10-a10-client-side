@@ -20,7 +20,7 @@ export default function CampaignDetails() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const donation_ammount = e.target.donation_ammount.value;
-    const user_email = user.user_email;
+    const user_email = user.email;
     const user_name = user.displayName;
     const data = {
       image,
@@ -31,6 +31,7 @@ export default function CampaignDetails() {
       deadline,
       user_email,
       user_name,
+      donation_ammount
     };
     fetch(`http://localhost:3000/donate`, {
       method: "POST",

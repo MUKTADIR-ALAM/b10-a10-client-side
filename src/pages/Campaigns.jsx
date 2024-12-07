@@ -1,15 +1,22 @@
-import { Link, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
+import { FaDonate } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 export default function Campaigns() {
   const data = useLoaderData();
   const [campaigns, setCampaigns] = useState(data);
   const today = new Date().toISOString().split("T")[0];
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleDelete = (id) => {
+    if(!user){
+      navigate('/login');
+      return;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -26,12 +33,12 @@ export default function Campaigns() {
           icon: "success",
         });
 
-        fetch(`http://localhost:3000/campaigns/${id}`,{
-          method:'DELETE'
+        fetch(`http://localhost:3000/campaigns/${id}`, {
+          method: "DELETE",
         })
-        .then(res=>res.json())
-        .then(result=>console.log(result))
-        const remaining = campaigns.filter(camp=>camp._id!=id)
+          .then((res) => res.json())
+          .then((result) => console.log(result));
+        const remaining = campaigns.filter((camp) => camp._id != id);
         setCampaigns(remaining);
       }
     });
@@ -58,20 +65,37 @@ export default function Campaigns() {
             </thead>
             <tbody>
               {/* row 1 */}
-              {campaigns.map((campaign,idx) => {
-                return (<tr>
-                  <th>{idx+1}</th>
-                  <td>{campaign.campaign_title}</td>
-                  <td>{campaign.campaign_type}</td>
-                  <td>{campaign.deadline}</td>
-                  <td>{today>campaign.deadline?'passed':'active'}</td>
-                  <td>{campaign.minimum_donation}$</td>
-                  <td className="space-x-2 space-y-1 flex justify-center items-center">
-                    <Link to={`/campaignDetails/${campaign._id}`} className="btn "><FaEye /></Link>
-                    <Link to={`/updateCampaign/${campaign._id}`} className="btn"><RxUpdate /></Link>
-                    <button onClick={()=>handleDelete(campaign._id)} className="btn"><MdDeleteForever /></button>
-                  </td>
-                </tr>);
+              {campaigns.map((campaign, idx) => {
+                return (
+                  <tr key={campaign._id}>
+                    <th>{idx + 1}</th>
+                    <td>{campaign.campaign_title}</td>
+                    <td>{campaign.campaign_type}</td>
+                    <td>{campaign.deadline}</td>
+                    <td>{today > campaign.deadline ? "passed" : "active"}</td>
+                    <td>{campaign.minimum_donation}$</td>
+                    <td className="space-x-2 space-y-1 flex justify-center items-center">
+                      <Link
+                        to={`/campaignDetails/${campaign._id}`}
+                        className="btn "
+                      >
+                        <FaDonate />
+                      </Link>
+                      <Link
+                        to={`/updateCampaign/${campaign._id}`}
+                        className="btn"
+                      >
+                        <RxUpdate />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(campaign._id)}
+                        className="btn"
+                      >
+                        <MdDeleteForever />
+                      </button>
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>
