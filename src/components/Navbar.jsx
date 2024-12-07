@@ -1,31 +1,42 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function Navbar() {
   const { user, signOutUser } = useContext(AuthContext);
 
-  // 
-    const setDarkMode = () => {
+  //
+  const [darkmode, setdarkmode] = useState();
+  const setDarkMode = () => {
     document.querySelector("html").setAttribute("data-theme", "dark");
-    }
-    const setLightMode = () => {
+  };
+  const setLightMode = () => {
     document.querySelector("html").setAttribute("data-theme", "light");
-    }
-    const toggleTheme= (e) => {
+  };
+  const toggleTheme = (e) => {
     if (e.target.checked) setDarkMode();
-    else setLightMode()
-    }
+    else setLightMode();
+  };
 
-  // 
+  //
 
   const link = (
     <>
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
-
       <li>
+        <NavLink to={"/campaigns"}>All Campaign</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/addCampaign"}>Add New Campaign</NavLink>
+      </li>
+      {user && (
+        <li>
+          <NavLink to={`/myCampaigns/${user.email}`}>My Campaign</NavLink>
+        </li>
+      )}
+      {/* <li>
         <details className="z-10">
           <summary>Campaign Menu</summary>
           <ul className="w-[180px]">
@@ -42,7 +53,7 @@ export default function Navbar() {
             )}
           </ul>
         </details>
-      </li>
+      </li> */}
       {user && (
         <li>
           <NavLink to={"/myDonations"}>My Donations</NavLink>
@@ -77,13 +88,16 @@ export default function Navbar() {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost font-bold lg:text-2xl">crowdcube</a>
+        <a className="btn btn-ghost font-bold sm:text-2xl">crowdcube</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end">
-        <div className="flex justify-center items-center gap-2">Dark mode <input onClick={toggleTheme} type="checkbox" className="toggle" defaultChecked /></div>
+        <div className="flex justify-center items-center gap-2">
+          <span className="text-sm">Dark mode</span>
+          <input onClick={toggleTheme} type="checkbox" className="toggle" />
+        </div>
         {user && user?.email ? (
           // <div className="px-4 font-bold flex gap-3 items-center">
           //   <div className="avatar">
