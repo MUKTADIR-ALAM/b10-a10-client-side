@@ -10,6 +10,11 @@ export default function AddCampaign() {
     e.preventDefault();
     const form = e.target;
     const image = form.image.value;
+    const urlPattern = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!urlPattern.test(image)){
+      toast.error('Invalid img url');
+      return;
+    }
     const campaign_title = form.campaign_title.value;
     const campaign_type = form.campaign_type.value;
     const description = form.description.value;
@@ -150,7 +155,7 @@ export default function AddCampaign() {
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-primary bg-primary border-none">
-              Donate Now
+              Add new Campaign
             </button>
           </div>
         </form>

@@ -59,7 +59,7 @@ export default function CampaignDetails() {
         const notify = () => toast.success("Thanks for your donation");
         notify();
       });
-    navigate(-1);
+    // navigate(-1);
   };
 
   if (loading) {
