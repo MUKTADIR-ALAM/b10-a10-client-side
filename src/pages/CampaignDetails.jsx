@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function CampaignDetails() {
   // const campaign = useLoaderData();
   const [loading, setLoading] = useState(true);
 const [campaign,setCampaign] = useState([]);
-
+const navigate = useNavigate();
 const {id} = useParams();
   const { user } = useContext(AuthContext);
 
@@ -60,6 +60,7 @@ const {id} = useParams();
         notify();
         console.log(result);
       });
+      navigate(-1);
   };
 
   if (loading) {
