@@ -59,7 +59,7 @@ export default function Campaigns() {
     const sorted = [...campaigns].sort((a, b) => {
       return parseInt(a.minimum_donation) - parseInt(b.minimum_donation);
     });
-    console.log(sorted);
+    // console.log(sorted);
     setCampaigns(sorted);
   };
 

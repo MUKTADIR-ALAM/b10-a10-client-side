@@ -58,7 +58,6 @@ export default function CampaignDetails() {
       .then((result) => {
         const notify = () => toast.success("Thanks for your donation");
         notify();
-        console.log(result);
       });
     navigate("/myDonations");
   };

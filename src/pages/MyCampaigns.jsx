@@ -46,7 +46,9 @@ export default function MyCampaigns() {
           method: "DELETE",
         })
           .then((res) => res.json())
-          .then((result) => console.log(result));
+          .then((result) => {
+            // console.log(result)
+          });
         const remaining = campaigns.filter((camp) => camp._id != id);
         setCampaigns(remaining);
       }
