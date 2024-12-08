@@ -94,7 +94,7 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end">
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-center items-center gap-1 mr-1">
           <span className="text-sm">Dark mode</span>
           <input onClick={toggleTheme} type="checkbox" className="toggle" />
         </div>
@@ -134,7 +134,7 @@ export default function Navbar() {
         ) : (
           // dropdown code ends
 
-          <div className="space-x-2">
+          <div className="space-x-1">
             <Link to={"/login"} className="btn">
               Login
             </Link>

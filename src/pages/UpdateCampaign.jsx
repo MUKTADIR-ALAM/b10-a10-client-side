@@ -1,11 +1,25 @@
-import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 export default function UpdateCampaign() {
-  const campaign = useLoaderData();
+  // const campaign = useLoaderData();
+  const [loading, setLoading] = useState(true);
+  const [campaign, setCampaign] = useState([]);
   const { user } = useContext(AuthContext);
-//   console.log(campaign?._id).
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/campaignDetails/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCampaign(data);
+        setLoading(false);
+      });
+  }, []);
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,18 +41,26 @@ export default function UpdateCampaign() {
       user_email,
       user_name,
     };
-    fetch(`http://localhost:3000/updateCampaign/${campaign._id}`,{
-        method:'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+    fetch(`http://localhost:3000/updateCampaign/${campaign._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .then(res=>res.json())
-    .then(result=>console.log(result))
-
+      .then((res) => res.json())
+      .then((result) => toast.success("Successfully Updated!"));
+      navigate(-1);
+      
   };
 
+  if (loading) {
+    return (
+      <div className="w-fit mx-auto">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div>
       {/* form */}

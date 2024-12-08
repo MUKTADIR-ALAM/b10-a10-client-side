@@ -66,14 +66,14 @@ export default function Login() {
             className="input input-bordered"
             required
           />
-          <div onClick={()=>setShowPassword(!showPassword)} className="w-fit btn btn-xs absolute top-[40%] right-[5%]">
+          <div onClick={()=>setShowPassword(!showPassword)} className="w-fit btn btn-xs absolute top-[56%] right-[5%]">
             {showPassword?<FaEye size={15} />:<FaEyeSlash size={15} />}
           </div>
-          <label className="label">
+          {/* <label className="label">
             <Link to={"/forgetpass"} className="label-text-alt link link-hover">
               Forgot password?
             </Link>
-          </label>
+          </label> */}
         </div>
         <div className="form-control mt-6">
           <button className="btn btn-primary bg-primary border-none">Login</button>

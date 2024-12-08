@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function AddCampaign() {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,20 +24,19 @@ export default function AddCampaign() {
       minimum_donation,
       deadline,
       user_email,
-      user_name
+      user_name,
     };
-    fetch('http://localhost:3000/addCampaign', {
-      method: 'POST',
+    fetch("http://localhost:3000/addCampaign", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-    .then(res=>res.json())
-    .then(data=>console.log(data));
-    // e.target.reset();
-    const notify = () =>
-      toast.success("Thank you ! We will reach your destination soon");
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    e.target.reset();
+    const notify = () => toast.success("Campaign created successfully");
     notify();
   };
 

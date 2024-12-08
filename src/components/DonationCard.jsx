@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function DonationCard({ donate }) {
-  console.log(donate);
   const { campaign_title,campaign_type, user_name, donation_ammount, image } = donate;
   return (
     <div className="card bg-base-100 w-96 shadow-xl">

@@ -10,11 +10,13 @@ import MyCampaigns from "../pages/MyCampaigns";
 import MyDonation from "../pages/MyDonation";
 import UpdateCampaign from "../pages/UpdateCampaign";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
@@ -35,17 +37,17 @@ export const Router = createBrowserRouter([
       {
         path: "/campaigns",
         element: <Campaigns />,
-        loader: () => fetch(`http://localhost:3000/campaigns`),
+        // loader: () => fetch(`http://localhost:3000/campaigns`),
       },
       {
         path: "/updateCampaign/:id",
         element: <PrivateRoute><UpdateCampaign /></PrivateRoute>,
-        loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
+        // loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
       },
       {
         path: "/myDonations",
         element: <PrivateRoute><MyDonation /></PrivateRoute>,
-        loader: () => fetch(`http://localhost:3000/donate`),
+        // loader: () => fetch(`http://localhost:3000/donate`),
       },
       {
         path: "/myCampaigns/:email",

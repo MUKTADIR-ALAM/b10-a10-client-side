@@ -6,7 +6,7 @@ import { AuthContext } from "../provider/AuthProvider";
 export default function CampaignDetails() {
   const campaign = useLoaderData();
   const { user } = useContext(AuthContext);
-  // console.log(user);
+  const today = new Date().toISOString().split("T")[0];
   const {
     _id,
     image,
@@ -77,7 +77,7 @@ export default function CampaignDetails() {
               </div>
               <div>
                 <span className="font-bold ">Status: </span>
-                <span className="">{minimum_donation}</span>
+                <span className="">{today>deadline?'passed':'active'}</span>
               </div>
             </div>
             {/* Size Selection */}
@@ -108,9 +108,12 @@ export default function CampaignDetails() {
                   />
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary bg-primary border-none">
+                  {
+                    today>deadline?<button disabled className="btn btn-primary bg-primary border-none">Deadline is Passed</button>:<button className="btn btn-primary bg-primary border-none">
                     Donate Now
                   </button>
+                  }
+                  
                 </div>
               </form>
             </div>

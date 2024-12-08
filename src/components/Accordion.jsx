@@ -1,15 +1,25 @@
 import React from "react";
+import { useTypewriter } from 'react-simple-typewriter'
+import Lottie from "lottie-react";
+import qna from './qna.json'
 
 export default function Accordion() {
+  const [typeEffect] = useTypewriter({
+    words:['Question and Answer','Question and Answer' ,'Question and Answer'],
+    loop: 0,
+    typeSpeed:80,
+    delaySpeed:80
+  })
   return (
     <div>
       <h2 className="text-center font-bold text-2xl mb-4">
-        Common Question and Answer
+      Common {typeEffect}
       </h2>
 
       <div className="flex justify-center items-center flex-col lg:flex-row gap-8">
         <div className="w-1/2">
-          <img src="https://i.ibb.co.com/3hVLNv6/Frame.png" alt="" />
+          {/* <img src="https://i.ibb.co.com/3hVLNv6/Frame.png" alt="" /> */}
+          <Lottie animationData={qna}/>
         </div>
         <div className="space-y-2">
           <div className="collapse bg-base-200">

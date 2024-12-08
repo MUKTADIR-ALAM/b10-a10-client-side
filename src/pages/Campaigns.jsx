@@ -1,5 +1,5 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link,  useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
 import { FaDonate } from "react-icons/fa";
@@ -7,11 +7,21 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function Campaigns() {
-  const data = useLoaderData();
-  const [campaigns, setCampaigns] = useState(data);
+
+  const [loading,setLoading] = useState(true);
+  const [campaigns, setCampaigns] = useState([]);
   const today = new Date().toISOString().split("T")[0];
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/campaigns`)
+    .then(res=>res.json())
+    .then(data=>{
+      setCampaigns(data);
+      setLoading(false);
+    });
+  },[])
   const handleDelete = (id) => {
     if(!user){
       navigate('/login');
@@ -43,10 +53,23 @@ export default function Campaigns() {
       }
     });
   };
+
+  const handleSort = ()=>{
+    const sorted = [...campaigns].sort((a,b)=>{
+      return parseInt(a.minimum_donation) -  parseInt(b.minimum_donation)
+    })
+    console.log(sorted);
+    setCampaigns(sorted);
+  }
+
+  if(loading){
+    return <div className="w-fit mx-auto"><span className="loading loading-bars loading-lg"></span></div>
+  }
   return (
     <>
       <div className="mb-3 text-2xl font-bold mx-auto w-fit">
         All Campaigns({campaigns?.length})
+        <button onClick={handleSort} className="btn ml-2">Sort</button>
       </div>
       {campaigns.length ? (
         <div className="overflow-x-auto w-11/12 mx-auto">
@@ -101,7 +124,7 @@ export default function Campaigns() {
           </table>
         </div>
       ) : (
-        <p>No campaigns runing</p>
+        <p className="w-fit mx-auto">No campaigns runing</p>
       )}
     </>
   );

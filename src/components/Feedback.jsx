@@ -1,8 +1,16 @@
 import React from 'react'
 import toast from 'react-hot-toast';
+import { useTypewriter } from 'react-simple-typewriter'
+
 
 export default function Feedback() {
 
+  const [typeEffect] = useTypewriter({
+    words:['eedback','eedback','eedback'],
+    loop: 0,
+    typeSpeed:80,
+    delaySpeed:80
+  })
   const handleFeedbackSubmit = e =>{
     e.preventDefault();
 
@@ -64,16 +72,16 @@ Country:  Bangladesh
             {/* Feedback Form */}
             <form onSubmit={handleFeedbackSubmit}>
             <div className=" flex flex-col md:ml-auto w-full mt-8 md:mt-0">
-              <h2 className="text-black text-lg mb-1 font-medium title-font">
-                Feedback
+              <h2 className="text-lg mb-1 font-medium title-font">
+                F{typeEffect}
               </h2>
-              <p className="leading-relaxed mb-5 text-black">
+              <p className="leading-relaxed mb-5">
                 write how you fell about our campaigns
               </p>
               <div className="relative mb-4">
                 <label
                   htmlFor="name"
-                  className="leading-7 text-sm text-black"
+                  className="leading-7 text-sm "
                 >
                   Name
                 </label>
@@ -88,7 +96,7 @@ Country:  Bangladesh
               <div className="relative mb-4">
                 <label
                   htmlFor="email"
-                  className="leading-7 text-sm text-black"
+                  className="leading-7 text-sm "
                 >
                   Email
                 </label>
@@ -103,7 +111,7 @@ Country:  Bangladesh
               <div className="relative mb-4">
                 <label
                   htmlFor="message"
-                  className="leading-7 text-sm text-black"
+                  className="leading-7 text-sm "
                 >
                   Message
                 </label>
@@ -115,7 +123,7 @@ Country:  Bangladesh
                 ></textarea>
               </div>
               <button className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">
-                Button
+                Submit
               </button> 
             </div>
             </form>
