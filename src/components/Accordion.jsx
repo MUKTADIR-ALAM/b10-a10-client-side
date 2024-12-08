@@ -11,7 +11,7 @@ export default function Accordion() {
     delaySpeed:80
   })
   return (
-    <div>
+    <div className="mb-4">
       <h2 className="text-center font-bold text-2xl mb-4">
       Common {typeEffect}
       </h2>
@@ -25,63 +25,55 @@ export default function Accordion() {
           <div className="collapse bg-base-200">
             <input type="radio" name="my-accordion-1" defaultChecked />
             <div className="collapse-title text-xl font-medium">
-              Q: How can I donate clothes through this website?
+            Q1: What is the purpose of the crowdfunding website?
             </div>
             <div className="collapse-content">
               <p>
-                A: Simply log in or sign up, browse the active donation
-                campaigns, and fill out the donation form with details about
-                your items and pickup location.
+              The website allows people to raise funds for projects, ideas, or causes such as personal needs, creative projects, or startups.
               </p>
             </div>
           </div>
           <div className="collapse bg-base-200">
             <input type="radio" name="my-accordion-1" />
             <div className="collapse-title text-xl font-medium">
-              Q: What type of clothing can I donate?
+            Q2: What are the authentication requirements?
             </div>
             <div className="collapse-content">
               <p>
-                A: You can donate warm clothing like jackets, sweaters, scarves,
-                gloves, socks, and blankets. Please ensure all items are clean
-                and in good condition.
+              The site includes login and registration with email and password. Passwords must have at least one uppercase letter, one lowercase letter, and a minimum of six characters. Google or GitHub login is also integrated. Success or error messages are displayed using toast or sweet alerts.
               </p>
             </div>
           </div>
           <div className="collapse bg-base-200">
             <input type="radio" name="my-accordion-1" />
             <div className="collapse-title text-xl font-medium">
-              Q: Is there a deadline for donating to campaigns?
+            Q3: What features does the “Add New Campaign” page have?
             </div>
             <div className="collapse-content">
               <p>
-                A: Each campaign may have specific timelines. You can find the
-                deadline information on the campaign details page.
+              It includes a form for adding campaigns with fields like image URL, title, type, description, minimum donation, deadline, and user info (read-only). Data is stored in the database, and success messages are shown using toast or sweet alerts.
               </p>
             </div>
           </div>
           <div className="collapse bg-base-200">
             <input type="radio" name="my-accordion-1" />
             <div className="collapse-title text-xl font-medium">
-              Q: How are the donations distributed?
+            Q4: What links are in the navbar?
             </div>
             <div className="collapse-content">
               <p>
-                A: Donations are collected by volunteers and distributed to
-                vulnerable communities in rural and low-income areas across
-                Bangladesh.
+              The navbar includes links to Home, All Campaigns, Add New Campaign, My Campaign, My Donations, and conditional Login/Register or Logout buttons based on user status.
               </p>
             </div>
           </div>
           <div className="collapse bg-base-200">
             <input type="radio" name="my-accordion-1" />
             <div className="collapse-title text-xl font-medium">
-              Q: Can I track the impact of my donation?
+            Q5: What extra features are recommended?
             </div>
             <div className="collapse-content">
               <p>
-                A: Yes, we share updates about how your contributions have
-                helped through stories, photos, and campaign progress.
+              Suggestions include adding a dark/light theme toggle, using advanced React packages like Lottie React, implementing sort functionality on the All Campaign page, and showing a message if a campaign’s donation deadline has passed.
               </p>
             </div>
           </div>

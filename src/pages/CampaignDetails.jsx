@@ -6,19 +6,19 @@ import { AuthContext } from "../provider/AuthProvider";
 export default function CampaignDetails() {
   // const campaign = useLoaderData();
   const [loading, setLoading] = useState(true);
-const [campaign,setCampaign] = useState([]);
-const navigate = useNavigate();
-const {id} = useParams();
+  const [campaign, setCampaign] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
   const { user } = useContext(AuthContext);
 
-  useEffect(()=>{
-    fetch(`http://localhost:3000/campaignDetails/${id}`)
-    .then((res) => res.json())
+  useEffect(() => {
+    fetch(`https://crowdcube-server-nine.vercel.app/campaignDetails/${id}`)
+      .then((res) => res.json())
       .then((data) => {
         setCampaign(data);
         setLoading(false);
       });
-  },[])
+  }, []);
 
   const today = new Date().toISOString().split("T")[0];
   const {
@@ -45,9 +45,9 @@ const {id} = useParams();
       deadline,
       user_email,
       user_name,
-      donation_ammount
+      donation_ammount,
     };
-    fetch(`http://localhost:3000/donate`, {
+    fetch(`https://crowdcube-server-nine.vercel.app/donate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const {id} = useParams();
         notify();
         console.log(result);
       });
-      navigate('/myDonations');
+    navigate("/myDonations");
   };
 
   if (loading) {
@@ -99,7 +99,9 @@ const {id} = useParams();
               </div>
               <div>
                 <span className="font-bold ">Status: </span>
-                <span className="">{today>deadline?'passed':'active'}</span>
+                <span className="">
+                  {today > deadline ? "passed" : "active"}
+                </span>
               </div>
             </div>
             {/* Size Selection */}
@@ -130,12 +132,18 @@ const {id} = useParams();
                   />
                 </div>
                 <div className="form-control mt-6">
-                  {
-                    today>deadline?<button disabled className="btn btn-primary bg-primary border-none">Deadline is Passed</button>:<button className="btn btn-primary bg-primary border-none">
-                    Donate Now
-                  </button>
-                  }
-                  
+                  {today > deadline ? (
+                    <button
+                      disabled
+                      className="btn btn-primary bg-primary border-none "
+                    >
+                      Deadline is Passed
+                    </button>
+                  ) : (
+                    <button className="btn btn-primary bg-primary border-none">
+                      Donate Now
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

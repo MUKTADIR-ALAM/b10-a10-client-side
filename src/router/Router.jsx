@@ -16,7 +16,7 @@ export const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -32,32 +32,52 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/addCampaign",
-        element: <PrivateRoute><AddCampaign /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddCampaign />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/campaigns",
         element: <Campaigns />,
-        // loader: () => fetch(`http://localhost:3000/campaigns`),
+        // loader: () => fetch(`https://crowdcube-server-nine.vercel.app/campaigns`),
       },
       {
         path: "/updateCampaign/:id",
-        element: <PrivateRoute><UpdateCampaign /></PrivateRoute>,
-        // loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateCampaign />
+          </PrivateRoute>
+        ),
+        // loader: ({params})=>fetch(`https://crowdcube-server-nine.vercel.app/campaignDetails/${params.id}`),
       },
       {
         path: "/myDonations",
-        element: <PrivateRoute><MyDonation /></PrivateRoute>,
-        // loader: () => fetch(`http://localhost:3000/donate`),
+        element: (
+          <PrivateRoute>
+            <MyDonation />
+          </PrivateRoute>
+        ),
+        // loader: () => fetch(`https://crowdcube-server-nine.vercel.app/donate`),
       },
       {
         path: "/myCampaigns/:email",
-        element: <PrivateRoute><MyCampaigns /></PrivateRoute>,
-        // loader: ({params}) => fetch(`http://localhost:3000/myCampaigns/${params.email}`),
+        element: (
+          <PrivateRoute>
+            <MyCampaigns />
+          </PrivateRoute>
+        ),
+        // loader: ({params}) => fetch(`https://crowdcube-server-nine.vercel.app/myCampaigns/${params.email}`),
       },
       {
         path: "/campaignDetails/:id",
-        element: <PrivateRoute><CampaignDetails/></PrivateRoute>,
-        // loader: ({params})=>fetch(`http://localhost:3000/campaignDetails/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <CampaignDetails />
+          </PrivateRoute>
+        ),
+        // loader: ({params})=>fetch(`https://crowdcube-server-nine.vercel.app/campaignDetails/${params.id}`),
       },
     ],
   },

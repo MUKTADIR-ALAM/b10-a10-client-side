@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 
-export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
+export default function CampaignCard({ campaign, campaigns, setCampaigns }) {
   const {
     _id,
     image,
@@ -17,8 +17,8 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleDelete = (id) => {
-    if(!user){
-      navigate('/login');
+    if (!user) {
+      navigate("/login");
       return;
     }
     Swal.fire({
@@ -37,12 +37,12 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
           icon: "success",
         });
 
-        fetch(`http://localhost:3000/campaigns/${id}`,{
-          method:'DELETE'
+        fetch(`https://crowdcube-server-nine.vercel.app/campaigns/${id}`, {
+          method: "DELETE",
         })
-        .then(res=>res.json())
-        .then(result=>console.log(result))
-        const remaining = campaigns.filter(camp=>camp._id!=id)
+          .then((res) => res.json())
+          .then((result) => console.log(result));
+        const remaining = campaigns.filter((camp) => camp._id != id);
         setCampaigns(remaining);
       }
     });
@@ -80,7 +80,7 @@ export default function CampaignCard({ campaign,campaigns, setCampaigns }) {
             Update
           </Link>
           <button
-            onClick={()=>handleDelete(_id)}
+            onClick={() => handleDelete(_id)}
             className="btn btn-primary bg-red-500 hover:bg-red-600 border-none"
           >
             Delete

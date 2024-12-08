@@ -1,30 +1,31 @@
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
 import { FaDonate } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { FaSortAmountDownAlt } from "react-icons/fa";
+
 
 export default function Campaigns() {
-
-  const [loading,setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [campaigns, setCampaigns] = useState([]);
   const today = new Date().toISOString().split("T")[0];
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    fetch(`http://localhost:3000/campaigns`)
-    .then(res=>res.json())
-    .then(data=>{
-      setCampaigns(data);
-      setLoading(false);
-    });
-  },[])
+  useEffect(() => {
+    fetch(`https://crowdcube-server-nine.vercel.app/campaigns`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCampaigns(data);
+        setLoading(false);
+      });
+  }, []);
   const handleDelete = (id) => {
-    if(!user){
-      navigate('/login');
+    if (!user) {
+      navigate("/login");
       return;
     }
     Swal.fire({
@@ -43,7 +44,7 @@ export default function Campaigns() {
           icon: "success",
         });
 
-        fetch(`http://localhost:3000/campaigns/${id}`, {
+        fetch(`https://crowdcube-server-nine.vercel.app/campaigns/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -54,22 +55,28 @@ export default function Campaigns() {
     });
   };
 
-  const handleSort = ()=>{
-    const sorted = [...campaigns].sort((a,b)=>{
-      return parseInt(a.minimum_donation) -  parseInt(b.minimum_donation)
-    })
+  const handleSort = () => {
+    const sorted = [...campaigns].sort((a, b) => {
+      return parseInt(a.minimum_donation) - parseInt(b.minimum_donation);
+    });
     console.log(sorted);
     setCampaigns(sorted);
-  }
+  };
 
-  if(loading){
-    return <div className="w-fit mx-auto"><span className="loading loading-bars loading-lg"></span></div>
+  if (loading) {
+    return (
+      <div className="w-fit mx-auto">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
   }
   return (
     <>
       <div className="mb-3 text-2xl font-bold mx-auto w-fit">
         All Campaigns({campaigns?.length})
-        <button onClick={handleSort} className="btn ml-2">Sort</button>
+        <button onClick={handleSort} className="btn ml-2">
+          Sort <FaSortAmountDownAlt />
+        </button>
       </div>
       {campaigns.length ? (
         <div className="overflow-x-auto w-11/12 mx-auto">

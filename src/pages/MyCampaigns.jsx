@@ -8,25 +8,21 @@ import Swal from "sweetalert2";
 
 export default function MyCampaigns() {
   const { user } = useContext(AuthContext);
-  const {email} = useParams();
+  const { email } = useParams();
   // const data = useLoaderData();
-
-
- 
 
   // const [data,setData] = useState();
   const [loading, setLoading] = useState(true);
   const [campaigns, setCampaigns] = useState([]);
 
-  useEffect(()=>{
-    fetch(`http://localhost:3000/myCampaigns/${email}`)
-    .then((res) => res.json())
+  useEffect(() => {
+    fetch(`https://crowdcube-server-nine.vercel.app/myCampaigns/${email}`)
+      .then((res) => res.json())
       .then((data) => {
         setCampaigns(data);
         setLoading(false);
       });
-  },[])
-
+  }, []);
 
   const today = new Date().toISOString().split("T")[0];
   const handleDelete = (id) => {
@@ -46,12 +42,12 @@ export default function MyCampaigns() {
           icon: "success",
         });
 
-        fetch(`http://localhost:3000/campaigns/${id}`,{
-          method:'DELETE'
+        fetch(`https://crowdcube-server-nine.vercel.app/campaigns/${id}`, {
+          method: "DELETE",
         })
-        .then(res=>res.json())
-        .then(result=>console.log(result))
-        const remaining = campaigns.filter(camp=>camp._id!=id)
+          .then((res) => res.json())
+          .then((result) => console.log(result));
+        const remaining = campaigns.filter((camp) => camp._id != id);
         setCampaigns(remaining);
       }
     });

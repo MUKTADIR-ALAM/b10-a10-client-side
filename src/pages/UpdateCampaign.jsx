@@ -11,7 +11,7 @@ export default function UpdateCampaign() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/campaignDetails/${id}`)
+    fetch(`https://crowdcube-server-nine.vercel.app/campaignDetails/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCampaign(data);
@@ -41,17 +41,19 @@ export default function UpdateCampaign() {
       user_email,
       user_name,
     };
-    fetch(`http://localhost:3000/updateCampaign/${campaign._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://crowdcube-server-nine.vercel.app/updateCampaign/${campaign._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((result) => toast.success("Successfully Updated!"));
-      navigate(-1);
-      
+    navigate(-1);
   };
 
   if (loading) {

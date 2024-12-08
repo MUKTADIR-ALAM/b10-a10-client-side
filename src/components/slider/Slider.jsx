@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 export default function Slider() {
   return (
@@ -40,6 +41,12 @@ export default function Slider() {
             <p className="absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg">
               Help other business by donate in our campaign{" "}
             </p>
+            <Link
+              to={`/campaigns`}
+              className="btn absolute bottom-[45%] left-[45%] bg-gray-600 border-none text-white hover:bg-gray-700"
+            >
+              Explore campaign
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
             <img
@@ -49,20 +56,42 @@ export default function Slider() {
             <p className="absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg">
               Help other business by donate in our campaign{" "}
             </p>
+            <Link
+              to={`/campaigns`}
+              className="btn absolute bottom-[45%] left-[45%] bg-gray-600 border-none text-white hover:bg-gray-700"
+            >
+              Explore campaign
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
             <img
               src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
             />
-            <p className='absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg'>Help other business by donate in our campaign </p>
+            <p className="absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg">
+              Help other business by donate in our campaign{" "}
+            </p>
+            <Link
+              to={`/campaigns`}
+              className="btn absolute bottom-[45%] left-[45%] bg-gray-600 border-none text-white hover:bg-gray-700"
+            >
+              Explore campaign
+            </Link>
           </SwiperSlide>
           <SwiperSlide>
             <img
               src="https://images.pexels.com/photos/6694950/pexels-photo-6694950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
             />
-            <p className='absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg'>Help other business by donate in our campaign </p>
+            <p className="absolute bottom-4 left-4 text-black bg-gray-100 brightness-50 p-2 rounded-lg">
+              Help other business by donate in our campaign{" "}
+            </p>
+            <Link
+              to={`/campaigns`}
+              className="btn absolute bottom-[45%] left-[45%] bg-gray-600 border-none text-white hover:bg-gray-700"
+            >
+              Explore campaign
+            </Link>
           </SwiperSlide>
         </Swiper>
       </div>

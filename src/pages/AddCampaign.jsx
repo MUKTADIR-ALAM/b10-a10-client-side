@@ -27,7 +27,7 @@ export default function AddCampaign() {
       user_email,
       user_name,
     };
-    fetch("http://localhost:3000/addCampaign", {
+    fetch("https://crowdcube-server-nine.vercel.app/addCampaign", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function AddCampaign() {
       .then((data) => {
         const notify = () => toast.success("Campaign created successfully");
         notify();
-        navigate('/campaigns')
+        navigate("/campaigns");
       });
     e.target.reset();
   };
