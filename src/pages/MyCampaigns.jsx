@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
 import { FaDonate } from "react-icons/fa";
@@ -8,8 +8,26 @@ import Swal from "sweetalert2";
 
 export default function MyCampaigns() {
   const { user } = useContext(AuthContext);
-  const data = useLoaderData();
-  const [campaigns, setCampaigns] = useState(data);
+  const {email} = useParams();
+  // const data = useLoaderData();
+
+
+ 
+
+  // const [data,setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [campaigns, setCampaigns] = useState([]);
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/myCampaigns/${email}`)
+    .then((res) => res.json())
+      .then((data) => {
+        setCampaigns(data);
+        setLoading(false);
+      });
+  },[])
+
+
   const today = new Date().toISOString().split("T")[0];
   const handleDelete = (id) => {
     Swal.fire({
@@ -38,6 +56,14 @@ export default function MyCampaigns() {
       }
     });
   };
+  if (loading) {
+    return (
+      <div className="w-fit mx-auto">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col justify-center items-center my-8">
       <div className="mb-3 text-2xl font-bold">
