@@ -105,7 +105,7 @@ export default function CampaignDetails() {
             </div>
             {/* Size Selection */}
             <div className="mb-4">
-              <span className="font-bold ">Createion Date:</span>
+              <span className="font-bold ">Last Date:</span>
               <div className="flex items-center mt-2">{deadline}</div>
             </div>
             {/* Product Description */}
