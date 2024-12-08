@@ -32,6 +32,7 @@ export default function Login() {
     signInWithGoogle()
     .then((result) => {
       navigate(location?.state ? location?.state:'/')
+      toast.success('Successfully login');
     })
     .catch((error) => {
       setErrorMessage(err.message);

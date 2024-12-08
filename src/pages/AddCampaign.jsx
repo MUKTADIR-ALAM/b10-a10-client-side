@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCampaign() {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -34,10 +35,12 @@ export default function AddCampaign() {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        const notify = () => toast.success("Campaign created successfully");
+        notify();
+        navigate('/campaigns')
+      });
     e.target.reset();
-    const notify = () => toast.success("Campaign created successfully");
-    notify();
   };
 
   return (

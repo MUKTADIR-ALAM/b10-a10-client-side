@@ -14,6 +14,7 @@ export default function Register() {
     signInWithGoogle()
       .then((result) => {
         navigate(location?.state ? location?.state : "/");
+        toast.success('Successfully Registerd!');
       })
       .catch((error) => {
         setErrorMessage(err.message);

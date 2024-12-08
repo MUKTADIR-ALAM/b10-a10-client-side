@@ -60,7 +60,7 @@ const {id} = useParams();
         notify();
         console.log(result);
       });
-      navigate(-1);
+      navigate('/myDonations');
   };
 
   if (loading) {

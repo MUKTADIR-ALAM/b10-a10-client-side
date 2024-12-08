@@ -102,9 +102,9 @@ export default function Campaigns() {
                         to={`/campaignDetails/${campaign._id}`}
                         className="btn "
                       >
-                        <FaDonate />
+                        See More
                       </Link>
-                      <Link
+                      {/* <Link
                         to={`/updateCampaign/${campaign._id}`}
                         className="btn"
                       >
@@ -115,7 +115,7 @@ export default function Campaigns() {
                         className="btn"
                       >
                         <MdDeleteForever />
-                      </button>
+                      </button> */}
                     </td>
                   </tr>
                 );
