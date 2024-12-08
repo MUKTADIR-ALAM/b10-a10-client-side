@@ -1,8 +1,30 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Crowdcube: A Crowd Funding Application
 
-Currently, two official plugins are available:
+# About
+This crowdfunding platform enables users to raise money for personal needs, creative projects, or startups. With a user-friendly design, secure authentication, and features like campaign creation, donation tracking, and real-time updates, it connects people with contributors to bring ideas to life.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Links
+
+- website link: https://kicksy0101.web.app/
+- pdf link: https://docs.google.com/document/d/1YQytgBxCeXVy7SxTiulD_f9kSl7x3gBFmpJ4iRTX3V8/edit?tab=t.0
+
+## key features
+
+ - **Lottie React:** use this cool npm package for animate the website.
+
+
+ - **Protected Route:** whthout login user cannot access the private route
+
+
+
+ - **Manage data by Mongodb:** User can create delete and updata his own data. 
+
+
+ - **React-simple-typewriter:** Make typewriter npm package for make the website attractive
+
+
+ - **Authentication by Firebase:** users are Authenticate by Firebase
+
+
+

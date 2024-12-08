@@ -75,7 +75,7 @@ export default function CampaignCard({ campaign, campaigns, setCampaigns }) {
           >
             See more
           </Link>
-          <Link
+          {/* <Link
             to={`/updateCampaign/${_id}`}
             className="btn btn-primary bg-primary hover:bg-indigo-500 border-none"
           >
@@ -86,7 +86,7 @@ export default function CampaignCard({ campaign, campaigns, setCampaigns }) {
             className="btn btn-primary bg-red-500 hover:bg-red-600 border-none"
           >
             Delete
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
