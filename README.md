@@ -7,6 +7,7 @@ This crowdfunding platform enables users to raise money for personal needs, crea
 ## 🔗 Live Links
 
 - website link: https://kicksy0101.web.app/
+- backend link: https://crowdcube-server-nine.vercel.app/
 - pdf link: https://docs.google.com/document/d/1YQytgBxCeXVy7SxTiulD_f9kSl7x3gBFmpJ4iRTX3V8/edit?tab=t.0
 
 ## key features
