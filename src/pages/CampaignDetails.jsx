@@ -1,11 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function CampaignDetails() {
-  const campaign = useLoaderData();
+  // const campaign = useLoaderData();
+  const [loading, setLoading] = useState(true);
+const [campaign,setCampaign] = useState([]);
+
+const {id} = useParams();
   const { user } = useContext(AuthContext);
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/campaignDetails/${id}`)
+    .then((res) => res.json())
+      .then((data) => {
+        setCampaign(data);
+        setLoading(false);
+      });
+  },[])
+
   const today = new Date().toISOString().split("T")[0];
   const {
     _id,
@@ -48,6 +62,13 @@ export default function CampaignDetails() {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="w-fit mx-auto">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="py-8 text">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
